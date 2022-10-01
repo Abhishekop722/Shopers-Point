@@ -20,7 +20,7 @@ const adminOperations = {
                     }
                     else res.status(200).json({status:'N'});
                 }
-                else res.status(500).json({status:'F',message:'System fail'});
+                else res.status(404).json({status:'F',message:'System fail, Invalid credentials'});
             }
         })
     },
