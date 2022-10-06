@@ -60,10 +60,10 @@ adminRoutes.post('/upload',(req,res)=>{
     console.log('In uploader.',req.product,req.body);
     upload(req,res,function(err){
         if(err){
-             res.status(500).json({status:'Error',message:'Error in uploading',err});
+             res.status(500).json({status:'E',message:'Error in uploading',err});
              return;
         }
-         res.status(200).json({status:'Success',message:'File recieved successfull'});
+         res.status(200).json({status:'S',message:'File recieved successfull'});
     })
 });
 adminRoutes.post('/deleteproduct',(req,res)=>{
