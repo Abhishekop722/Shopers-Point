@@ -9,7 +9,6 @@ var storage = multer.diskStorage({ //multers disk storage settings
     },
     filename: function (req, file, cb) {
         var datetimestamp = Date.now();
-        console.log('File isssss ',file);
         fileName = file.fieldname + '_' + datetimestamp + '.jpg';
         cb(null, fileName);
     }
@@ -25,7 +24,6 @@ adminRoutes.get('/dashboard',(req,res)=>{
 adminRoutes.post('/changeAdminPassword',(req,res)=>{
     const oldPwd = req.body.oldPwd ;
     const newPwd = encrypt.encryption(req.body.newPwd) ;
-    console.log('IN change password ',newPwd,oldPwd);
     adminOperations.changePassword(oldPwd,newPwd,res);
 });
 adminRoutes.post('/fetchproducts',(req,res)=>{
@@ -62,8 +60,7 @@ adminRoutes.post('/upload',(req,res)=>{
     console.log('In uploader.',req.product,req.body);
     upload(req,res,function(err){
         if(err){
-            console.log('in err::::',err);
-             res.status(500).json({status:'E',err});
+             res.status(500).json({status:'E',message:'Error in uploading',err});
              return;
         }
          res.status(200).json({status:'S',message:'File recieved successfull'});
